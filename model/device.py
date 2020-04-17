@@ -33,8 +33,8 @@ class Device(object):
     swagger_types = {
         'id': 'int',
         'esn': 'int',
-        'name': 'str',
-        'type': 'int',
+        'device_name': 'str',
+        'device_type': 'int',
         'status': 'int',
         'interfaces': 'list[Interface]'
     }
@@ -42,19 +42,19 @@ class Device(object):
     attribute_map = {
         'id': 'id',
         'esn': 'esn',
-        'name': 'name',
-        'type': 'type',
+        'device_name': 'device_name',
+        'device_type': 'device_type',
         'status': 'status',
         'interfaces': 'interfaces'
     }
 
-    def __init__(self, id=None, esn=None, name=None, type=None, status=None, interfaces=None):  # noqa: E501
+    def __init__(self, id=None, esn=None, device_name=None, device_type=None, status=None, interfaces=None):  # noqa: E501
         """Device - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
         self._esn = None
-        self._name = None
-        self._type = None
+        self._device_name = None
+        self._device_type = None
         self._status = None
         self._interfaces = None
         self.discriminator = None
@@ -63,10 +63,10 @@ class Device(object):
             self.id = id
         if esn is not None:
             self.esn = esn
-        if name is not None:
-            self.name = name
-        if type is not None:
-            self.type = type
+        if device_name is not None:
+            self.device_name = device_name
+        if device_type is not None:
+            self.device_type = device_type
         if status is not None:
             self.status = status
         if interfaces is not None:
@@ -115,46 +115,46 @@ class Device(object):
         self._esn = esn
 
     @property
-    def name(self):
-        """Gets the name of this Device.  # noqa: E501
+    def device_name(self):
+        """Gets the device_name of this Device.  # noqa: E501
 
 
-        :return: The name of this Device.  # noqa: E501
+        :return: The device_name of this Device.  # noqa: E501
         :rtype: str
         """
-        return self._name
+        return self._device_name
 
-    @name.setter
-    def name(self, name):
-        """Sets the name of this Device.
+    @device_name.setter
+    def device_name(self, device_name):
+        """Sets the device_name of this Device.
 
 
-        :param name: The name of this Device.  # noqa: E501
+        :param device_name: The device_name of this Device.  # noqa: E501
         :type: str
         """
 
-        self._name = name
+        self._device_name = device_name
 
     @property
-    def type(self):
-        """Gets the type of this Device.  # noqa: E501
+    def device_type(self):
+        """Gets the device_type of this Device.  # noqa: E501
 
 
-        :return: The type of this Device.  # noqa: E501
+        :return: The device_type of this Device.  # noqa: E501
         :rtype: int
         """
-        return self._type
+        return self._device_type
 
-    @type.setter
-    def type(self, type):
-        """Sets the type of this Device.
+    @device_type.setter
+    def device_type(self, device_type):
+        """Sets the device_type of this Device.
 
 
-        :param type: The type of this Device.  # noqa: E501
+        :param device_type: The device_type of this Device.  # noqa: E501
         :type: int
         """
 
-        self._type = type
+        self._device_type = device_type
 
     @property
     def status(self):

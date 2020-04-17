@@ -33,23 +33,23 @@ class Interface(object):
     swagger_types = {
         'id': 'int',
         'device_id': 'str',
-        'type': 'int',
+        'interface_type': 'int',
         'ip': 'str'
     }
 
     attribute_map = {
         'id': 'id',
         'device_id': 'deviceId',
-        'type': 'type',
+        'interface_type': 'interface_type',
         'ip': 'ip'
     }
 
-    def __init__(self, id=None, device_id=None, type=None, ip=None):  # noqa: E501
+    def __init__(self, id=None, device_id=None, interface_type=None, ip=None):  # noqa: E501
         """Interface - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
         self._device_id = None
-        self._type = None
+        self._interface_type = None
         self._ip = None
         self.discriminator = None
 
@@ -57,8 +57,8 @@ class Interface(object):
             self.id = id
         if device_id is not None:
             self.device_id = device_id
-        if type is not None:
-            self.type = type
+        if interface_type is not None:
+            self.interface_type = interface_type
         if ip is not None:
             self.ip = ip
 
@@ -105,25 +105,25 @@ class Interface(object):
         self._device_id = device_id
 
     @property
-    def type(self):
-        """Gets the type of this Interface.  # noqa: E501
+    def interface_type(self):
+        """Gets the interface_type of this Interface.  # noqa: E501
 
 
-        :return: The type of this Interface.  # noqa: E501
+        :return: The interface_type of this Interface.  # noqa: E501
         :rtype: int
         """
-        return self._type
+        return self._interface_type
 
-    @type.setter
-    def type(self, type):
-        """Sets the type of this Interface.
+    @interface_type.setter
+    def interface_type(self, interface_type):
+        """Sets the interface_type of this Interface.
 
 
-        :param type: The type of this Interface.  # noqa: E501
+        :param interface_type: The interface_type of this Interface.  # noqa: E501
         :type: int
         """
 
-        self._type = type
+        self._interface_type = interface_type
 
     @property
     def ip(self):

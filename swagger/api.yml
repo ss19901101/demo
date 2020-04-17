@@ -44,10 +44,10 @@ definitions:
       esn:
         type: integer
         format: int64
-      name:
+      device_name:
         type: string
         format: int32
-      type:
+      device_type:
         type: integer
         format: int16
       status:
@@ -66,7 +66,7 @@ definitions:
       deviceId:
         type: string
         format: int64
-      type:
+      interface_type:
         type: integer
         format: int16
       ip:

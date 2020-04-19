@@ -15,7 +15,7 @@ alter table device
 create table interface
 (
 	id bigint auto_increment,
-	deviceId bigint not null,
+	device_id bigint not null,
 	interface_type tinyint null,
 	ip varchar(32) null,
 	constraint interface_id_uindex

@@ -47,8 +47,11 @@ def execute_sql(sql, args):
     return cursor
 
 @gen.coroutine
-def delete(str):
-    pass
+def soft_delete(obj):
+    sql = 'update %s set deleted=1 where id = %s' %(
+        obj.__class__.__name__.lower(),obj.id
+    )
+    yield POOL.execute(sql)
 
 
 @gen.coroutine

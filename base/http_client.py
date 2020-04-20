@@ -13,7 +13,7 @@ def get(url='', params=None):
         params = {}
     query_str = '?'
     for key in params:
-        query_str += key + '=' + params[key] + '&'
+        query_str += key + '=' + str(params[key]) + '&'
     url = url + query_str[0:-1]
     return http(url=url)
 
@@ -28,7 +28,7 @@ def post(url='', body=''):
     return http(url=url, method='POST', body=body)
 
 
-async def http(url='', method='GET', body=''):
+async def http(url='', method='GET', body=None):
     """
 
     :param url:

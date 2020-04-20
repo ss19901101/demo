@@ -1,16 +1,17 @@
 import tornado.ioloop
 import tornado.web
 
-from base.url_handler import URLHandler
+import tornado.ioloop
+import base.url_handler as handler
+import api.device
 
-URLs = URLHandler()
+application = handler.Application()
 
-
-def make_app():
-    return tornado.web.Application(URLs.urls)
-
+# 装载 Request Handler 模块
+application.load_handler_module(api.device)
 
 if __name__ == "__main__":
-    app = make_app()
-    app.listen(8888)
-    tornado.ioloop.IOLoop.current().start()
+    application.listen(8080)
+    tornado.ioloop.IOLoop.instance().start()
+
+

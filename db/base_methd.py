@@ -36,7 +36,7 @@ def add(obj):
                 args.append(arg_temp)
     sql = 'insert into %s (%s) values (%s)' % (
         obj.__class__.__name__.lower(), ','.join(fields), ','.join(params))
-    cursor = execute_sql(sql, args)
+    cursor = yield execute_sql(sql, args)
     obj_id = cursor.lastrowid
     return obj_id
 
@@ -46,10 +46,11 @@ def execute_sql(sql, args):
     cursor = yield POOL.execute(sql, args)
     return cursor
 
+
 @gen.coroutine
 def soft_delete(obj):
-    sql = 'update %s set deleted=1 where id = %s' %(
-        obj.__class__.__name__.lower(),obj.id
+    sql = 'update %s set deleted=1 where id = %s' % (
+        obj.__class__.__name__.lower(), obj.id
     )
     yield POOL.execute(sql)
 

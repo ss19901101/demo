@@ -39,7 +39,7 @@ class BaseModel(object):
         and setting the object id property with an auto-generated id
         """
 
-        self.id = add(self)
+        self.id = yield add(self)
 
     @gen.coroutine
     def update(self):

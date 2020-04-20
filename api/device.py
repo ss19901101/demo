@@ -42,7 +42,7 @@ class DeviceAPI(RequestHandler):
         yield device.save()
         for interface in device.interfaces:
             interface.device_id = device.id
-            interface = yield base_methd.add(interface)
+            yield interface.save()
             print(interface.id)
         # 向Mock服务器请求数据
         data = json_decode(self.request.body)

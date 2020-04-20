@@ -1,3 +1,5 @@
+create database demo;
+
 create table device
 (
 	id bigint auto_increment,
@@ -5,6 +7,7 @@ create table device
 	device_name varchar(255) null,
 	device_type int null,
 	status tinyint null,
+	deleted tinyint not null default 0,
 	constraint table_name_id_uindex
 		unique (id)
 );
@@ -18,6 +21,7 @@ create table interface
 	device_id bigint not null,
 	interface_type tinyint null,
 	ip varchar(32) null,
+    deleted tinyint not null default 0,
 	constraint interface_id_uindex
 		unique (id),
 	constraint interface_device_id_fk

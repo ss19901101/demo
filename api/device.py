@@ -1,14 +1,11 @@
-import json
 from typing import Optional, Awaitable
 
 from tornado import gen
 from tornado.escape import json_decode, json_encode
-from tornado.httpclient import AsyncHTTPClient, HTTPRequest
 
-from base.http_client import post, get
-from constant import DeviceStatus
-from db import base_methd
+from base.http_client import client_controller
 from base.url_handler import route, RequestHandler
+from huey_task.device_tasks import device_ok_callback
 from model.device import Device
 from model.interface import Interface
 
@@ -20,9 +17,7 @@ class DeviceAPI(RequestHandler):
 
     @gen.coroutine
     def get(self):
-        result = yield base_methd.query('select * from device')
-        result = json.dumps(result)
-        self.write(result)
+        device_ok_callback(self.get_argument(name='id'))
 
     @gen.coroutine
     def post(self):
@@ -46,18 +41,7 @@ class DeviceAPI(RequestHandler):
             print(interface.id)
         # 向Mock服务器请求数据
         data = json_decode(self.request.body)
-        self.finish('OK')
         data['id'] = device.id
-        response = yield post(url='mock', body=json_encode(data))
-        print(response.code)
-        if response.code != 200:
-            return
-        for i in range(10):
-            response = yield get(url='mock', params={'id': device.id})
-            print('retry count %d', i)
-            if str(response.body, encoding='utf-8') == 'ACTIVE':
-                device.status = DeviceStatus.ACTIVE.value
-                yield base_methd.update(device)
-                break
-            else:
-                yield from gen.sleep(10)
+        response = yield client_controller.post(url='mock', body=json_encode(data))
+        if response.code == 200:
+            self.finish('OK')

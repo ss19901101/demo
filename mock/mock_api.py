@@ -1,6 +1,7 @@
 from tornado import gen
 from tornado.escape import json_decode
 
+from base.http_client import client_api
 from base.url_handler import route
 import base.url_handler as handler
 
@@ -24,4 +25,8 @@ class MockAPI(handler.RequestHandler):
         body_data = json_decode(self.request.body)
         self.finish('OK')
         yield from gen.sleep(2)
-        CACHE[body_data['id']] = body_data
+        data = {
+            'id': body_data['id']
+        }
+        response = yield client_api.get('resmgr/dev', data)
+        print(response.code)

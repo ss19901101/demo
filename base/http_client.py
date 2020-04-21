@@ -1,6 +1,5 @@
 from tornado.httpclient import AsyncHTTPClient, HTTPRequest
 
-BASE_PREFIX = 'http://localhost:8081/'
 
 
 class HTTPClient:
@@ -53,7 +52,7 @@ class HTTPClient:
         :return: HTTPResponse
         """
         http_client = AsyncHTTPClient()
-        request = HTTPRequest(url=BASE_PREFIX + url, method=method, body=body)
+        request = HTTPRequest(url=self._base_prefix + url, method=method, body=body)
         return await http_client.fetch(request)
 
 

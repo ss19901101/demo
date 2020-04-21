@@ -1,4 +1,4 @@
-from huey.contrib.djhuey import RedisHuey
+from huey import RedisHuey
 
 huey = RedisHuey(
     name='huey_demo',

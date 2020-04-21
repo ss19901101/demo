@@ -24,7 +24,7 @@ class MockAPI(handler.RequestHandler):
     def post(self):
         body_data = json_decode(self.request.body)
         self.finish('OK')
-        yield from gen.sleep(2)
+        yield from gen.sleep(10)
         data = {
             'id': body_data['id']
         }

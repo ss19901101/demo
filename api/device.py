@@ -8,6 +8,7 @@ from base.url_handler import route, RequestHandler
 from huey_task.device_tasks import device_ok_callback
 from model.device import Device
 from model.interface import Interface
+from rabbitmq import example_publisher
 
 
 @route('/resmgr/dev')
@@ -17,6 +18,10 @@ class DeviceAPI(RequestHandler):
 
     @gen.coroutine
     def get(self):
+        message = {
+            'id':self.get_argument(name='id')
+        }
+        example_publisher.publish_message(message)
         device_ok_callback(self.get_argument(name='id'))
 
     @gen.coroutine

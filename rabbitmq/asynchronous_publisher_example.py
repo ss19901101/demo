@@ -320,12 +320,12 @@ class ExamplePublisher(object):
 
         try:
             self._connection = self.connect()
-                    # self._connection.ioloop.start()
+            # self._connection.ioloop.start()
         except KeyboardInterrupt:
             self.stop()
             if self._connection is not None and not self._connection.is_closed:
                 pass
-                 # self._connection.ioloop.start()
+                # self._connection.ioloop.start()
 
         LOGGER.info('Stopped')
 
@@ -357,3 +357,50 @@ class ExamplePublisher(object):
         if self._connection is not None:
             LOGGER.info('Closing connection')
             self._connection.close()
+
+
+class PublishProperty:
+    def __init__(self, exchange='', exchange_type='', route_key='', body=None):
+        """Setup the example publisher object, passing in the URL we will use
+        to connect to RabbitMQ.
+
+        :param str amqp_url: The URL for connecting to RabbitMQ
+
+        """
+        self._exchange = None
+        self._exchange_type = None
+
+        self._route_key = None
+        self._body = None
+
+    @property
+    def exchange(self):
+        return self._exchange
+
+    @exchange.setter
+    def exchange(self, exchange):
+        self._exchange = exchange
+
+    @property
+    def exchange_type(self):
+        return self._exchange_type
+
+    @exchange_type.setter
+    def exchange_type(self, exchange_type):
+        self._exchange_type = exchange_type
+
+    @property
+    def route_key(self):
+        return self._route_key
+
+    @route_key.setter
+    def route_key(self, route_key):
+        self._route_key = route_key
+
+    @property
+    def body(self):
+        return self._body
+
+    @body.setter
+    def body(self, body):
+        self._body = body

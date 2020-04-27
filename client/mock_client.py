@@ -32,3 +32,6 @@ if __name__ == "__main__":
     print(__name__)
     io_loop = ioloop.IOLoop.current()
     io_loop.run_sync(main)
+    ioloop.IOLoop.instance().start()
+
+
